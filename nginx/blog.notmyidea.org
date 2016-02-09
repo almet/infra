@@ -1,0 +1,17 @@
+server {
+	listen 8000;
+	server_name blog.notmyidea.org;
+
+	location / {
+	    root      /home/www/blog.notmyidea.org/;
+	    index     index.html;
+	}
+
+	location /images/ {
+	    rewrite     ^/images/(.*)   https://blog.notmyidea.org/static/images/$1 permanent;
+	}
+
+	location /feeds/images/ {
+	    rewrite     ^/feeds/images/(.*)   https://blog.notmyidea.org/static/images/$1 permanent;
+	}
+}

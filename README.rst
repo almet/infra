@@ -43,9 +43,10 @@ all the SSL magic is offloaded when in HAProxy.
 We try to run all the services behind SSL. It's actually quite simple to enable
 SSL for a new domain.
 
-The first thing to do is to add you domain to the commands that are listed in
-``letsencrypt/renew-certs.sh``. Then, you can run the new script.
+The first thing to do is to add you domain in a new file under ``letsencrypt/domain.tld.sh``.
+Then, you can run this script and after that, run the ``letsencrypt/install-certs.sh`` script.
 
 How to run a TOR hidden service
 ===============================
 
+XXX.
