@@ -1,6 +1,7 @@
 server {
 	listen 8000;
 	server_name blog.notmyidea.org;
+	server_name nfwaalpreavhhhzz.onion;
 
 	location / {
 	    root      /home/www/blog.notmyidea.org/;
