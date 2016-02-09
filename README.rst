@@ -50,4 +50,9 @@ Then, you can run this script and after that, run the ``letsencrypt/install-cert
 How to run a TOR hidden service
 ===============================
 
-XXX.
+To run a service behind a TOR hiddent service, you need to:
+
+1. Edit the /etc/tor/torrc file and decide on a port that you want to bind locally.
+2. Go in the haproxy configuration and bind this port in a new frontend, and
+   make the link with the backend you want.
+3. Eventually place the name of the hidden service in the NGINX configuration.
