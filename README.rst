@@ -44,7 +44,7 @@ We try to run all the services behind SSL. It's actually quite simple to enable
 SSL for a new domain.
 
 The first thing to do is to add you domain to the commands that are listed in
-``renew-certs.sh``. Then, you can run the new script.
+``letsencrypt/renew-certs.sh``. Then, you can run the new script.
 
 How to run a TOR hidden service
 ===============================
