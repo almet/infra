@@ -1,5 +1,5 @@
-How Artichaud works?
-####################
+How this works?
+###############
 
 If you want to add a new webby thing to this server, you will need to:
 
