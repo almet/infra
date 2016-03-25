@@ -1,5 +1,8 @@
 # How this works?
 
+You can review the list of new services and planned migrations [on our issue
+tracker](https://git.notmyidea.org/almet/infra/issues)
+
 If you want to add a new webby thing to this server, you will need to:
 
 1. If it runs "normally", create an NGINX configuration file for it;
