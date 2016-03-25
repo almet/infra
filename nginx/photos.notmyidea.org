@@ -1,0 +1,9 @@
+server {
+	listen 8000;
+	server_name photos.notmyidea.org;
+
+	location / {
+	    root      /home/www/photos.notmyidea.org/;
+	    index     index.html;
+	}
+}
