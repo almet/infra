@@ -5,4 +5,5 @@
 -d shout.notmyidea.org \
 -d pad.notmyidea.org \
 -d git.notmyidea.org \
+-d board.notmyidea.org \
 -d photos.notmyidea.org
