@@ -6,4 +6,7 @@
 -d pad.notmyidea.org \
 -d git.notmyidea.org \
 -d board.notmyidea.org \
+-d kinto.notmyidea.org \
+-d static.notmyidea.org \
+-d tvb.notmyidea.org \
 -d photos.notmyidea.org

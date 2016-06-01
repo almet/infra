@@ -1,0 +1,10 @@
+
+server {
+	listen 8000;
+	server_name static.notmyidea.org;
+
+	location / {
+	    root      /home/www/static.notmyidea.org/;
+	    index     index.html;
+	}
+}

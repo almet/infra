@@ -1,0 +1,9 @@
+server {
+	listen 8000;
+	server_name www.fourmilieres.net;
+
+	location / {
+	    root      /home/www/www.fourmilieres.net/;
+	    index     index.html;
+	}
+}

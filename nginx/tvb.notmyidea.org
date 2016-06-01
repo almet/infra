@@ -1,0 +1,9 @@
+server {
+	listen 8000;
+	server_name tvb.notmyidea.org;
+
+	location / {
+	    root      /home/www/tvb.notmyidea.org/;
+	    index     index.html;
+	}
+}
