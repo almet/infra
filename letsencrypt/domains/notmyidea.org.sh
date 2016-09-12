@@ -9,4 +9,7 @@
 -d kinto.notmyidea.org \
 -d static.notmyidea.org \
 -d tvb.notmyidea.org \
+-d zimit.notmyidea.org \
+-d owncloud.notmyidea.org \
+-d cozy.notmyidea.org \
 -d photos.notmyidea.org
