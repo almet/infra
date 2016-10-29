@@ -12,4 +12,5 @@
 -d zimit.notmyidea.org \
 -d owncloud.notmyidea.org \
 -d cozy.notmyidea.org \
--d photos.notmyidea.org
+-d photos.notmyidea.org \
+-d dolibarr.notmyidea.org
