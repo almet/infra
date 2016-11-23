@@ -13,4 +13,6 @@
 -d owncloud.notmyidea.org \
 -d cozy.notmyidea.org \
 -d photos.notmyidea.org \
+-d tracker.notmyidea.org \
+-d alexis.notmyidea.org \
 -d dolibarr.notmyidea.org

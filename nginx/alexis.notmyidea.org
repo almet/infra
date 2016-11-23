@@ -1,0 +1,9 @@
+server {
+	listen 8000;
+	server_name alexis.notmyidea.org;
+
+	location / {
+	    root      /home/www/alexis.notmyidea.org/;
+	    index     index.html;
+	}
+}
