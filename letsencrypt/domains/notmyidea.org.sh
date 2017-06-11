@@ -11,6 +11,5 @@
 -d owncloud.notmyidea.org \
 -d photos.notmyidea.org \
 -d tracker.notmyidea.org \
--d social.notmyidea.org \
 -d links.notmyidea.org \
 -d alexis.notmyidea.org

@@ -4,8 +4,15 @@ server {
 	server_name static.notmyidea.org;
 
 	location / {
+	    add_header Content-Disposition attachment;
 	    root      /home/www/static.notmyidea.org/;
 	    index     index.html;
+	}
+
+	location /videos/ {
+	    root      /home/www/static.notmyidea.org/;
+	    index     index.html;
+	    autoindex on;
 	}
 
 	location /films/ {
