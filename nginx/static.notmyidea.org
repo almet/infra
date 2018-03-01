@@ -9,6 +9,12 @@ server {
 	    index     index.html;
 	}
 
+	location /archives/ {
+	    root      /home/www/static.notmyidea.org/;
+	    index     index.html;
+	    autoindex on;
+	}
+
 	location /videos/ {
 	    root      /home/www/static.notmyidea.org/;
 	    index     index.html;

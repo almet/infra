@@ -1,10 +1,13 @@
 server {
         listen   8000;
 	port_in_redirect off;
-        server_name owncloud.notmyidea.org cloud.reseaugrappe.org;
+        server_name owncloud.notmyidea.org;
         set $path /home/www/owncloud.notmyidea.org/;
         root $path;
-        client_max_body_size 20M;
+        client_max_body_size 800M;
+
+	access_log  /var/log/nginx/owncloud.access.log;
+        error_log /var/log/nginx/owncloud.error.log;
 
         rewrite ^/caldav(.*)$ /remote.php/caldav$1 redirect;
         rewrite ^/carddav(.*)$ /remote.php/carddav$1 redirect;

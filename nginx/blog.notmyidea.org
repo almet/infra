@@ -1,15 +1,11 @@
 server {
 	listen 8000;
 	server_name blog.notmyidea.org;
-	server_name nfwaalpreavhhhzz.onion;
+	server_name hy3ynpgh3ke4cfdy.onion;
 
 	location / {
 	    root      /home/www/blog.notmyidea.org/;
 	    index     index.html;
-	}
-
-	location /images/ {
-	    rewrite     ^/images/(.*)   https://blog.notmyidea.org/static/images/$1 permanent;
 	}
 
 	location /feeds/images/ {

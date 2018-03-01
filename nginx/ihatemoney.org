@@ -4,7 +4,7 @@ server {
         keepalive_timeout 5;
 
         location /static/ {
-                alias   /home/www/ihatemoney.org/code/budget/static/;
+                alias   /home/www/ihatemoney.org/venv/local/lib/python2.7/site-packages/ihatemoney/static/;
         }
 
         location / {
@@ -26,5 +26,5 @@ server {
 }
 
 upstream ihatemoney_backend {
-        server unix:/home/www/ihatemoney.org/gunicorn.sock;
+        server unix:/tmp/ihatemoney.gunicorn.sock;
 }
