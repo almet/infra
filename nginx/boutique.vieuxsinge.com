@@ -1,20 +1,13 @@
 server {
 	listen 443 ssl;
 	listen 80;
-	server_name www.vieuxsinge.com;
+	server_name boutique.vieuxsinge.com;
 	
 	ssl_certificate /etc/letsencrypt/live/www.vieuxsinge.com/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/www.vieuxsinge.com/privkey.pem;
 
 	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
-
-	location / {
-	    root      /home/www/www.vieuxsinge.com/;
-	    index     index.html;
-	}
 	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
+	# Redirect all traffic to external website
+        return 301 https://brasserieduvieuxsinge.auneor-conseil.fr;
 }

@@ -1,7 +1,13 @@
 server {
-        listen   8000;
-	port_in_redirect off;
-        server_name owncloud.notmyidea.org;
+	listen 443 ssl;
+	listen 80;
+	server_name owncloud.notmyidea.org;
+	
+	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
+
+	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
+
         set $path /home/www/owncloud.notmyidea.org/;
         root $path;
         client_max_body_size 800M;
@@ -63,6 +69,9 @@ server {
              # Optional: Don't log access to assets
              access_log off;
          }
-       }
-
-
+	
+	# Redirect non-https traffic to https
+    	if ($scheme != "https") {
+        	return 301 https://$host$request_uri;
+    	} # managed by Certbot
+}

@@ -1,9 +1,0 @@
-server {
-	listen 8000;
-	server_name www.kinto-storage.org;
-
-	location / {
-	    root      /home/www/www.kinto-storage.org/;
-	    index     index.html;
-	}
-}

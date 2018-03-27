@@ -1,0 +1,41 @@
+server {
+	listen 443 ssl;
+	listen 80;
+    	server_name musique.notmyidea.org;
+	
+	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
+
+	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
+
+
+        location /engine.io/ {
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          proxy_http_version 1.1;
+          proxy_set_header        Host $host;
+          proxy_set_header        X-Real-IP $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto $scheme;
+
+          proxy_pass          http://127.0.0.1:9001;
+        }
+
+        location / {
+          proxy_set_header        Host $host;
+          proxy_set_header        X-Real-IP $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto $scheme;
+
+          # Fix the âIt appears that your reverse proxy set up is broken" error.
+          proxy_pass          http://127.0.0.1:9000;
+          proxy_read_timeout  90;
+
+          proxy_redirect      http://127.0.0.1:9000 https://musique.notmyidea.org;
+        }
+	
+	# Redirect non-https traffic to https
+    	if ($scheme != "https") {
+        	return 301 https://$host$request_uri;
+    	} # managed by Certbot
+}

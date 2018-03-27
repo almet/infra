@@ -1,6 +1,14 @@
 server {
-        listen       8000;
+	listen 443 ssl;
+	listen 80;
         server_name  pad.notmyidea.org;
+	
+	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
+
+	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
+
+
 
         access_log  /var/log/nginx/pad.notmyidea.org.access.log;
         error_log   /var/log/nginx/pad.notmyidea.org.error.log;
@@ -20,4 +28,9 @@ server {
             proxy_set_header Upgrade $http_upgrade;
             # proxy_set_header Connection $connection_upgrade;
         }
+	
+	# Redirect non-https traffic to https
+    	if ($scheme != "https") {
+        	return 301 https://$host$request_uri;
+    	} # managed by Certbot
 }

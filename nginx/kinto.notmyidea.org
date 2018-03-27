@@ -1,27 +1,24 @@
 server {
 	listen 443 ssl;
 	listen 80;
-        server_name tracker.notmyidea.org;
+    	server_name kinto.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
 
 	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
 
-	server_name hy3ynpgh3ke4cfdy.onion;
-
-        set $path /home/www/tracker.notmyidea.org/;
-        root $path;
-        client_max_body_size 20M;
-
-        location ~ .php$ {
-                fastcgi_param  SCRIPT_FILENAME  $path$fastcgi_script_name;
-                fastcgi_pass   php_backend;
-                include fastcgi_params;
-        }
 
         location / {
-                index index.html index.php;
+          proxy_set_header        Host $host;
+          proxy_set_header        X-Real-IP $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto $scheme;
+
+          proxy_pass          http://127.0.0.1:9007;
+          proxy_read_timeout  90;
+
+          proxy_redirect      http://127.0.0.1:9007 https://kinto.notmyidea.org;
         }
 	
 	# Redirect non-https traffic to https
@@ -29,4 +26,3 @@ server {
         	return 301 https://$host$request_uri;
     	} # managed by Certbot
 }
-
