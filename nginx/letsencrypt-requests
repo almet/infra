@@ -1,6 +1,5 @@
 server {
 	listen 8000;
 	server_name letsencrypt.requests;
-
 	root /home/www/letsencrypt-requests;
 }

@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name boutique.vieuxsinge.com;
 	
 	ssl_certificate /etc/letsencrypt/live/www.vieuxsinge.com/fullchain.pem;

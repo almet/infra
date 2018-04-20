@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name notes.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
@@ -13,9 +12,4 @@ server {
 	    root      /home/www/notes.notmyidea.org/;
             autoindex on;
 	}
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }

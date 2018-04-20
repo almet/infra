@@ -1,21 +1,17 @@
 server {
 	listen 443 ssl;
-        server_name  pad.notmyidea.org;
+        server_name  torrents.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
 
 	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
 
-
-
-        access_log  /var/log/nginx/pad.notmyidea.org.access.log;
-        error_log   /var/log/nginx/pad.notmyidea.org.error.log;
-
         location / {
-            proxy_pass             http://localhost:9004/;
-            proxy_set_header       Host $host;
-            proxy_pass_header Server;
+            proxy_pass			http://localhost:9006/;
+            proxy_set_header		Host $host;
+            proxy_pass_header		Server;
+
             # be carefull, this line doesn't override any proxy_buffering on set in a conf.d/file.conf
             proxy_buffering off;
             proxy_set_header X-Real-IP $remote_addr;  # http://wiki.nginx.org/HttpProxyModule
@@ -23,8 +19,10 @@ server {
             proxy_set_header X-Forwarded-Proto $scheme; # for EP to set secure cookie flag when https is used
             proxy_set_header Host $host;  # pass the host header                                                   
             proxy_http_version 1.1;  # recommended with keepalive connections                                                    
+
             # WebSocket proxying - from http://nginx.org/en/docs/http/websocket.html
             proxy_set_header Upgrade $http_upgrade;
             # proxy_set_header Connection $connection_upgrade;
         }
+	
 }

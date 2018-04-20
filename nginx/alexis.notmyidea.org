@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name alexis.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
@@ -13,9 +12,4 @@ server {
 	    root      /home/www/alexis.notmyidea.org/;
 	    index     index.html;
 	}
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }

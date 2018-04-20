@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name ihatemoney.org;
 	server_name www.ihatemoney.org;
 	server_name hy3ynpgh3ke4cfdy.onion;
@@ -32,14 +31,6 @@ server {
                     break;
                 }
         }
-	
-	# Redirect non-https traffic to https
-	location /.well-known/acme-challenge/ {
-		root /home/www/letsencrypt-requests/;
-	}
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }
 
 upstream ihatemoney_backend {

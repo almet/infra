@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name editor.vieuxsinge.com;
 	
 	ssl_certificate /etc/letsencrypt/live/www.vieuxsinge.com/fullchain.pem;
@@ -13,9 +12,4 @@ server {
 	    root      /home/www/editor.vieuxsinge.com/;
 	    index     index.html;
 	}
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }

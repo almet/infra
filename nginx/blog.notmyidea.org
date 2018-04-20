@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
 	server_name blog.notmyidea.org;
 	server_name hy3ynpgh3ke4cfdy.onion;
 	
@@ -18,9 +17,4 @@ server {
 	location /feeds/images/ {
 	    rewrite     ^/feeds/images/(.*)   https://blog.notmyidea.org/static/images/$1 permanent;
 	}
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }

@@ -1,6 +1,6 @@
 server {
-	listen 443 ssl;
-	listen 80;
+	listen 443 ssl http2;
+        listen [::]:443 ssl http2;
     	server_name musique.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
@@ -17,8 +17,9 @@ server {
           proxy_set_header        X-Real-IP $remote_addr;
           proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header        X-Forwarded-Proto $scheme;
+          proxy_read_timeout  90000;
 
-          proxy_pass          http://127.0.0.1:9001;
+          proxy_pass          http://ws_backend;
         }
 
         location / {
@@ -26,16 +27,21 @@ server {
           proxy_set_header        X-Real-IP $remote_addr;
           proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header        X-Forwarded-Proto $scheme;
+	  proxy_http_version	  1.1;
 
-          # Fix the âIt appears that your reverse proxy set up is broken" error.
-          proxy_pass          http://127.0.0.1:9000;
-          proxy_read_timeout  90;
+          # Fix the "It appears that your reverse proxy set up is broken" error.
+          proxy_pass          http://server_backend;
+          proxy_read_timeout  90000;
 
           proxy_redirect      http://127.0.0.1:9000 https://musique.notmyidea.org;
         }
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
+}
+
+upstream server_backend {
+    server 127.0.0.1:9000;
+    keepalive 2000;
+}
+upstream ws_backend {
+    server 127.0.0.1:9001;
+    keepalive 2000;
 }

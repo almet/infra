@@ -1,6 +1,5 @@
 server {
 	listen 443 ssl;
-	listen 80;
     	server_name kinto.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
@@ -20,9 +19,4 @@ server {
 
           proxy_redirect      http://127.0.0.1:9007 https://kinto.notmyidea.org;
         }
-	
-	# Redirect non-https traffic to https
-    	if ($scheme != "https") {
-        	return 301 https://$host$request_uri;
-    	} # managed by Certbot
 }
