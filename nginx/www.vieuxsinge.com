@@ -11,7 +11,7 @@ server {
 
     # HSTS (ngx_http_headers_module is required) (15768000 seconds = 6 months)
     add_header Strict-Transport-Security max-age=15768000;
-	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
+	include /home/poils/dev/certbot/certbot-nginx/certbot_nginx/options-ssl-nginx.conf;
 
 	location / {
 	    root      /home/www/www.vieuxsinge.com/;

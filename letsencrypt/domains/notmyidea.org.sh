@@ -1,6 +1,8 @@
 #!/bin/bash
 
 certbot certonly --renew-by-default --webroot -w /home/www/letsencrypt-requests/ \
+-d www.notmyidea.org \
+-d stream.notmyidea.org \
 -d blog.notmyidea.org \
 -d notes.notmyidea.org \
 -d nova.notmyidea.org \

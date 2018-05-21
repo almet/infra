@@ -6,7 +6,7 @@ server {
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
 
-	include /home/poils/letsencrypt/letsencrypt-nginx/letsencrypt_nginx/options-ssl-nginx.conf;
+	include /home/poils/dev/certbot/certbot-nginx/certbot_nginx/options-ssl-nginx.conf;
 
 
         location /engine.io/ {
@@ -33,12 +33,13 @@ server {
           proxy_pass          http://server_backend;
           proxy_read_timeout  90000;
 
-          proxy_redirect      http://127.0.0.1:9000 https://musique.notmyidea.org;
+          proxy_redirect      http://127.0.0.1:2020 https://musique.notmyidea.org;
         }
 }
 
 upstream server_backend {
-    server 127.0.0.1:9000;
+    #server 127.0.0.1:8337;
+    server 127.0.0.1:2020;
     keepalive 2000;
 }
 upstream ws_backend {
