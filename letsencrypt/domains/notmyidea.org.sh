@@ -15,4 +15,5 @@ certbot certonly --renew-by-default --webroot -w /home/www/letsencrypt-requests/
 -d torrents.notmyidea.org \
 -d musique.notmyidea.org \
 -d icecast.notmyidea.org \
+-d pierre.notmyidea.org \
 -d alexis.notmyidea.org
