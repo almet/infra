@@ -9,6 +9,7 @@ server {
 
         location / {
             proxy_pass			http://localhost:32400/;
+            # proxy_pass			http://localhost:4040/;
             proxy_set_header		Host $host;
             proxy_pass_header		Server;
 

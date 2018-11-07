@@ -1,7 +1,6 @@
 server {
-	listen 443 ssl http2;
-        listen [::]:443 ssl http2;
-    	server_name musique.notmyidea.org;
+	listen 443 ssl;
+	server_name musique.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
@@ -9,40 +8,8 @@ server {
 	include /home/poils/dev/certbot/certbot-nginx/certbot_nginx/options-ssl-nginx.conf;
 
 
-        location /engine.io/ {
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-          proxy_http_version 1.1;
-          proxy_set_header        Host $host;
-          proxy_set_header        X-Real-IP $remote_addr;
-          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header        X-Forwarded-Proto $scheme;
-          proxy_read_timeout  90000;
-
-          proxy_pass          http://ws_backend;
-        }
-
-        location / {
-          proxy_set_header        Host $host;
-          proxy_set_header        X-Real-IP $remote_addr;
-          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header        X-Forwarded-Proto $scheme;
-	  proxy_http_version	  1.1;
-
-          # Fix the "It appears that your reverse proxy set up is broken" error.
-          proxy_pass          http://server_backend;
-          proxy_read_timeout  90000;
-
-          proxy_redirect      http://127.0.0.1:2020 https://musique.notmyidea.org;
-        }
-}
-
-upstream server_backend {
-    #server 127.0.0.1:8337;
-    server 127.0.0.1:2020;
-    keepalive 2000;
-}
-upstream ws_backend {
-    server 127.0.0.1:9001;
-    keepalive 2000;
+	location / {
+	    root      /home/www/musique.notmyidea.org/pushtape-cassette/;
+	    index     index.html;
+	}
 }
