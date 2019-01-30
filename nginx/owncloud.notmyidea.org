@@ -2,11 +2,6 @@ server {
 	listen 443 ssl;
 	server_name owncloud.notmyidea.org;
 	
-	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
-
-	include /home/poils/dev/certbot/certbot-nginx/certbot_nginx/options-ssl-nginx.conf;
-
         set $path /home/www/owncloud.notmyidea.org/;
         root $path;
         client_max_body_size 800M;
@@ -46,6 +41,7 @@ server {
         }
        
          location ~ \.php(?:$|/) {
+             include snippets/fastcgi-php.conf;
              fastcgi_split_path_info ^(.+\.php)(/.+)$;
              include fastcgi_params;
              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -68,4 +64,7 @@ server {
              # Optional: Don't log access to assets
              access_log off;
          }
+    ssl_certificate /etc/letsencrypt/live/owncloud.notmyidea.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/owncloud.notmyidea.org/privkey.pem; # managed by Certbot
+
 }

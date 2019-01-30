@@ -1,15 +1,15 @@
 server {
 	listen 443 ssl;
-	server_name nova.notmyidea.org;
+	server_name musique.notmyidea.org;
 	
 	ssl_certificate /etc/letsencrypt/live/blog.notmyidea.org/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/blog.notmyidea.org/privkey.pem;
 
-	include /home/poils/dev/certbot/certbot-nginx/certbot_nginx/options-ssl-nginx.conf;
+	include /home/poils/infra/letsencrypt/options-ssl-nginx.conf;
 
 
 	location / {
-	    root      /home/www/nova.notmyidea.org/;
-            autoindex on;
+	    root      /home/www/musique.notmyidea.org/pushtape-cassette/;
+	    index     index.html;
 	}
 }
